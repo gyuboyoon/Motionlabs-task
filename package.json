@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@nestjs/common": "9.2.0",
+    "@nestjs/core": "9.2.0",
+    "@nestjs/platform-express": "9.2.0",
+    "@nestjs/swagger": "^6.2.1",
+    "exceljs": "^4.4.0",
+    "mysql2": "2.3.3",
+    "reflect-metadata": "0.1.13",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "0.3.10",
+    "typescript": "5.5.0-dev.20240603"
+  },
+  "scripts": {
+    "start": "nest start",
+    "build": "tsc",
+    "start:dev": "nest start --watch"
+  }
+}
