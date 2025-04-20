@@ -40,10 +40,10 @@ var __setFunctionName = (this && this.__setFunctionName) || function (f, name, p
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 var common_1 = require("@nestjs/common");
-var patients_module_ts_1 = require("../src/patients/patients.module.ts");
+var patients_module_1 = require("./patients/patients.module");
 var AppModule = function () {
     var _classDecorators = [(0, common_1.Module)({
-            imports: [patients_module_ts_1.PatientsModule],
+            imports: [patients_module_1.PatientsModule],
         })];
     var _classDescriptor;
     var _classExtraInitializers = [];
