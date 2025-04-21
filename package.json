@@ -2,17 +2,19 @@
   "dependencies": {
     "@nestjs/common": "9.2.0",
     "@nestjs/core": "9.2.0",
-    "@nestjs/platform-express": "9.2.0",
+    "@nestjs/platform-express": "^9.4.3",
     "@nestjs/swagger": "^6.2.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "exceljs": "^4.4.0",
+    "multer": "^1.4.5-lts.2",
     "mysql2": "2.3.3",
     "reflect-metadata": "0.1.13",
     "source-map-support": "^0.5.21",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "0.3.10",
-    "typescript": "5.5.0-dev.20240603"
+    "typescript": "5.5.0-dev.20240603",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "nest start",
@@ -20,6 +22,7 @@
     "start:dev": "nest start --watch"
   },
   "devDependencies": {
+    "@types/multer": "^1.4.12",
     "@types/node": "^18.19.86"
   }
 }
