@@ -17,18 +17,45 @@ import { diskStorage } from "multer";
 import * as path from "path";
 import { Express, Request } from "express";
 
+@Controller("test")
+export class TestController {
+  @Post("upload")
+  @UseInterceptors(FileInterceptor("file"))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
+    return { message: "파일 업로드 성공", file };
+  }
+}
+
 @Controller("patients")
 export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 
-  @Post("upload")
+  @Post("upload-test")
   @UseInterceptors(FileInterceptor("file"))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log("dd", file);
+    return { message: "파일 업로드 성공", file };
+  }
+
+  @Post("upload")
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: diskStorage({
+        destination: "./uploads",
+        filename: (req, file, cb) => {
+          const ext = path.extname(file.originalname);
+          cb(null, `${Date.now()}${ext}`);
+        },
+      }),
+    })
+  )
   async uploadExcel(@UploadedFile() file: Express.Multer.File) {
-    console.log("file:", file); // 콘솔에서 꼭 확인!
+    console.log("업로드된 파일:", file);
     if (!file) {
-      throw new BadRequestException("파일이 없습니다.");
+      throw new BadRequestException("파일이 업로드되지 않았습니다.");
     }
-    return { message: "업로드 성공!", filename: file.filename };
+    return this.patientsService.parseAndSaveExcel(file);
   }
 
   @Post()

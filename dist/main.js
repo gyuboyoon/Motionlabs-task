@@ -11,10 +11,13 @@ const common_1 = require("@nestjs/common");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     // app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalPipes(new common_1.ValidationPipe({
-        transform: true,
-        forbidUnknownValues: false,
-    }));
+    // app.useGlobalPipes(
+    //   new ValidationPipe({
+    //     transform: true,
+    //     forbidUnknownValues: false,
+    //   })
+    // );
+    app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true }));
     await app.listen(3000);
 }
 bootstrap();
