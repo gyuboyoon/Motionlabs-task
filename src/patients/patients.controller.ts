@@ -32,9 +32,9 @@ export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 
   @Post("upload-test")
-  @UseInterceptors(FileInterceptor("file"))
+  @UseInterceptors(FileInterceptor("test-file"))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log("dd", file);
+    console.log("✅ 업로드된 파일:", file);
     return { message: "파일 업로드 성공", file };
   }
 

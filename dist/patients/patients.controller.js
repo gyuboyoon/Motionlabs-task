@@ -88,7 +88,7 @@ let PatientsController = class PatientsController {
 exports.PatientsController = PatientsController;
 __decorate([
     (0, common_1.Post)("upload-test"),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)("file")),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)("test-file")),
     __param(0, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
