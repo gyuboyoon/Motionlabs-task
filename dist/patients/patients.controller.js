@@ -46,12 +46,17 @@ let PatientsController = class PatientsController {
     constructor(patientsService) {
         this.patientsService = patientsService;
     }
-    async uploadExcel(file) {
-        console.log("업로드된 파일:", file);
-        if (!file) {
-            throw new common_1.BadRequestException("파일이 업로드되지 않았습니다.");
-        }
-        return this.patientsService.parseAndSaveExcel(file);
+    // async uploadExcel(@UploadedFile("file") file: Express.Multer.File) {
+    //   console.log("업로드된 파일:", file);
+    //   if (!file || !file.path) {
+    //     throw new BadRequestException("파일이 업로드되지 않았습니다.");
+    //   }
+    //   return this.patientsService.parseAndSaveExcel(file);
+    // }
+    async uploadExcel(file, body, req) {
+        console.log("body:", body);
+        console.log("req.file:", req.file);
+        console.log("file:", file);
     }
     create(createPatientDto) {
         return this.patientsService.create(createPatientDto);
@@ -74,10 +79,20 @@ __decorate([
                 cb(null, `${Date.now()}${ext}`);
             },
         }),
-    })),
+    }))
+    // async uploadExcel(@UploadedFile("file") file: Express.Multer.File) {
+    //   console.log("업로드된 파일:", file);
+    //   if (!file || !file.path) {
+    //     throw new BadRequestException("파일이 업로드되지 않았습니다.");
+    //   }
+    //   return this.patientsService.parseAndSaveExcel(file);
+    // }
+    ,
     __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", Promise)
 ], PatientsController.prototype, "uploadExcel", null);
 __decorate([

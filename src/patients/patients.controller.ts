@@ -6,6 +6,7 @@ import {
   Param,
   UploadedFile,
   UseInterceptors,
+  Req,
   BadRequestException,
 } from "@nestjs/common";
 import { PatientsService } from "./patients.service";
@@ -14,7 +15,7 @@ import { CreatePatientDto } from "./dto/create-patient.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import * as path from "path";
-import { Express } from "express";
+import { Express, Request } from "express";
 
 @Controller("patients")
 export class PatientsController {
@@ -32,13 +33,22 @@ export class PatientsController {
       }),
     })
   )
-  async uploadExcel(@UploadedFile() file: Express.Multer.File) {
-    console.log("업로드된 파일:", file);
-    if (!file || !file.path) {
-      throw new BadRequestException("파일이 업로드되지 않았습니다.");
-    }
+  // async uploadExcel(@UploadedFile("file") file: Express.Multer.File) {
+  //   console.log("업로드된 파일:", file);
+  //   if (!file || !file.path) {
+  //     throw new BadRequestException("파일이 업로드되지 않았습니다.");
+  //   }
 
-    return this.patientsService.parseAndSaveExcel(file);
+  //   return this.patientsService.parseAndSaveExcel(file);
+  // }
+  async uploadExcel(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: any,
+    @Req() req: Request
+  ) {
+    console.log("body:", body);
+    console.log("req.file:", req.file);
+    console.log("file:", file);
   }
 
   @Post()
